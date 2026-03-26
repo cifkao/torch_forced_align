@@ -24,14 +24,14 @@ RUN pip install uv
 
 WORKDIR /build
 
-COPY pyproject.toml setup.py ./
-COPY docker/ docker/
-COPY src/ src/
-
 RUN uv venv --python python${PYTHON_VERSION} .venv
 
 RUN . .venv/bin/activate && \
-    uv pip install torch==${TORCH_VERSION} setuptools
+    uv pip install torch==${TORCH_VERSION} numpy setuptools
+
+COPY pyproject.toml setup.py ./
+COPY docker/ docker/
+COPY src/ src/
 
 # Patch version with torch + CUDA tags, add dependency on the correct torch wheel
 RUN . .venv/bin/activate && \
