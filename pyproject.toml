@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "torch", "numpy"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torch-forced-align"
+version = "0.1.0"
+description = "Standalone CTC forced alignment extracted from torchaudio"
+requires-python = ">=3.9"
+dependencies = ["torch"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools]
+py-modules = []
+
+[tool.setuptools.exclude-package-data]
+"*" = ["*.cpp", "*.cu", "*.h", "*.cuh"]
