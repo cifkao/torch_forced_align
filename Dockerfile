@@ -31,10 +31,9 @@ COPY src/ src/
 RUN uv venv --python python${PYTHON_VERSION} .venv
 
 RUN . .venv/bin/activate && \
-    uv pip install torch==${TORCH_VERSION} --index-url https://download.pytorch.org/whl/${TORCH_TAG} && \
-    uv pip install numpy setuptools
+    uv pip install torch==${TORCH_VERSION} setuptools
 
-# Patch version with torch + CUDA tags
+# Patch version with torch + CUDA tags, add dependency on the correct torch wheel
 RUN . .venv/bin/activate && \
     BASE_VERSION=$(uv version --short) && \
     VERSION_TAG=$(python3 -c "import os; print('torch'+'.'.join([*os.environ['TORCH_VERSION'].split('.')[:2],os.environ['TORCH_TAG']]))") && \
