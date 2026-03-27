@@ -3,9 +3,9 @@ requires = ["setuptools", "torch", "numpy"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "torch-forced-align"
+name = "torch_forced_align"
 version = "0.1.0"
-description = "Standalone CTC forced alignment extracted from torchaudio"
+description = "Standalone distribution of torchaudio CTC forced alignment"
 requires-python = ">=3.9"
 dependencies = ["torch"]
 
