@@ -13,8 +13,7 @@ constexpr int kBackPtrBufferSize =
     100; // Buffer size of backPtr on GPU. The data is transferred to CPU once
          // the buffer reaches this max size.
 } // anonymous namespace
-namespace torchaudio {
-namespace alignment {
+namespace torch_forced_align {
 namespace gpu {
 template <typename scalar_t, typename target_t>
 __global__ void falign_cuda_step_kernel(
@@ -318,5 +317,4 @@ TORCH_LIBRARY_IMPL(torch_forced_align, CUDA, m) {
 }
 
 } // namespace gpu
-} // namespace alignment
-} // namespace torchaudio
+} // namespace torch_forced_align

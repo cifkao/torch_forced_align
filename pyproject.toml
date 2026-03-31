@@ -7,13 +7,20 @@ name = "torch_forced_align"
 version = "0.1.0"
 description = "Standalone distribution of torchaudio CTC forced alignment"
 requires-python = ">=3.9"
-dependencies = ["torch"]
+dependencies = ["torch", "numpy"]
+
+[dependency-groups]
+dev = [
+  "pytest",
+  "setuptools",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
-[tool.setuptools]
-py-modules = []
+[tool.ruff]
+line-length = 120
+target-version = "py39"
 
-[tool.setuptools.exclude-package-data]
-"*" = ["*.cpp", "*.cu", "*.h", "*.cuh"]
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

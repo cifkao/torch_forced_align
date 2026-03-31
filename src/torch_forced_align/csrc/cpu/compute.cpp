@@ -3,8 +3,7 @@
 
 using namespace std;
 
-namespace torchaudio {
-namespace alignment {
+namespace torch_forced_align {
 namespace cpu {
 // Inspired from
 // https://github.com/flashlight/sequence/blob/main/flashlight/lib/sequence/criterion/cpu/ConnectionistTemporalClassificationCriterion.cpp
@@ -204,5 +203,4 @@ TORCH_LIBRARY_IMPL(torch_forced_align, CPU, m) {
 }
 
 } // namespace cpu
-} // namespace alignment
-} // namespace torchaudio
+} // namespace torch_forced_align
