@@ -27,9 +27,7 @@ RUN pip install uv
 WORKDIR /build
 
 COPY pyproject.toml setup.py ./
-COPY docker/ docker/
 COPY src/ src/
-COPY tests/ tests/
 
 RUN uv venv --python python${PYTHON_VERSION} .venv
 
@@ -40,6 +38,9 @@ RUN . .venv/bin/activate && \
     uv add --frozen --index "https://download.pytorch.org/whl/${TORCH_BACKEND}" "torch~=${TORCH_VERSION}"
 
 RUN uv sync --dev --no-install-project
+
+COPY docker/ docker/
+COPY tests/ tests/
 
 ENV TORCH_CUDA_ARCH_LIST="7.0;7.5;8.0;8.6;8.9;9.0+PTX"
 
