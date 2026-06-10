@@ -2,7 +2,7 @@ import os as _os
 
 import torch
 
-from .forced_align import forced_align
+from .forced_align import TokenSpan, forced_align, merge_tokens
 
 # Loading the shared library registers torch.ops.torch_forced_align.forced_align
 _lib_dir = _os.path.dirname(__file__)
