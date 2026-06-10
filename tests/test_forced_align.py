@@ -3,9 +3,18 @@ import torch
 
 from torch_forced_align.forced_align import forced_align
 
+DEVICES = ["cpu"]
+if torch.cuda.is_available():
+    DEVICES.append("cuda")
+
+
+@pytest.fixture(params=DEVICES)
+def device(request):
+    return torch.device(request.param)
+
 
 @pytest.fixture
-def simple_emission():
+def simple_emission(device):
     """Create a simple emission where alignment is deterministic.
 
     3 classes: blank=0, 'a'=1, 'b'=2
@@ -13,7 +22,7 @@ def simple_emission():
     Emission strongly favors: blank, 'a', blank, 'b', blank
     """
     T, C = 5, 3
-    log_probs = torch.full((1, T, C), fill_value=-10.0)
+    log_probs = torch.full((1, T, C), fill_value=-10.0, device=device)
     # t=0: blank
     log_probs[0, 0, 0] = -0.1
     # t=1: 'a'
@@ -25,7 +34,7 @@ def simple_emission():
     # t=4: blank
     log_probs[0, 4, 0] = -0.1
 
-    targets = torch.tensor([[1, 2]])
+    targets = torch.tensor([[1, 2]], device=device)
     return log_probs, targets
 
 
@@ -39,14 +48,15 @@ def test_forced_align(simple_emission):
     assert torch.all(torch.isfinite(scores))
     assert torch.all(scores <= 0)  # log-probabilities are non-positive
 
-    expected_path = torch.tensor([[0, 1, 0, 2, 0]])
+    expected_path = torch.tensor([[0, 1, 0, 2, 0]], device=paths.device)
     assert torch.equal(paths, expected_path)
 
 
 def test_forced_align_with_explicit_lengths(simple_emission):
     log_probs, targets = simple_emission
-    input_lengths = torch.tensor([5])
-    target_lengths = torch.tensor([2])
+    device = log_probs.device
+    input_lengths = torch.tensor([5], device=device)
+    target_lengths = torch.tensor([2], device=device)
     paths, scores = forced_align(log_probs, targets, input_lengths, target_lengths)
 
     assert paths.shape == (1, 5)
