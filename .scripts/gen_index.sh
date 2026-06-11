@@ -84,7 +84,7 @@ mkdir -p "$(dirname "$DATA_FILE")"
     echo "    torch: \"$ver\""
     echo "    backend: \"$backend\""
     echo "    pythons: \"$pythons\""
-    echo "    url: \"$OUT_REL/$tag/\""
+    echo "    url: \"$OUT_REL/$tag\""
   done
 } > "$DATA_FILE"
 
