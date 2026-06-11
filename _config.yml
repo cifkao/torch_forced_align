@@ -1,0 +1,7 @@
+title: torch_forced_align
+description: Standalone distribution of torchaudio's CTC forced alignment op — prebuilt wheels.
+theme: jekyll-theme-cayman
+# Only index.md is templated; the PEP 503 indexes under whl/ have no front
+# matter and are copied verbatim. .scripts/ is a dotdir and ignored anyway.
+exclude:
+  - .scripts
