@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "torch_forced_align"
 version = "0.1.0"
 description = "Standalone distribution of torchaudio CTC forced alignment"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = ["torch", "numpy"]
 
 [dependency-groups]
