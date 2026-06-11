@@ -31,10 +31,7 @@ torchaudio and without locking in a specific PyTorch version.
   </div>
 </div>
 
-The selected `torch-forced-align` build must match the PyTorch already in your
-environment. The `cu12` wheels work with any CUDA 12.x PyTorch – the command
-defaults its PyTorch index to `cu128`, swap in your actual CUDA minor (e.g.
-`cu126`) if needed.
+The selected `torch-forced-align` index must match the PyTorch version and the CUDA version it was built for.
 
 <script>
   const COMBOS = [
