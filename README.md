@@ -1,7 +1,7 @@
 # torch_forced_align
 
 Standalone distribution of [torchaudio]'s CTC
-[**forced alignment**][forced_align] op ([`forced_align`][forced_align]),
+[**forced alignment**][forced_align] op (`torchaudio.functional.forced_align`),
 with builds for various PyTorch and CUDA versions, so that you can use it without pulling in
 torchaudio and without locking in a specific PyTorch version.
 
@@ -15,11 +15,11 @@ Prebuilt wheels are published for **Python 3.10–3.13** and **PyTorch 2.7–2.1
 in your environment – the **[install picker](https://cifkao.github.io/torch_forced_align/)**
 builds the exact command for you.
 
-In general, point your installer at the index for your PyTorch version + backend:
+In general, point your installer at the index for your PyTorch version + backend, e.g. for PyTorch 2.9 with CUDA 12.x:
 
 ```bash
-uv pip install torch-forced-align \
-  --extra-index-url https://cifkao.github.io/torch_forced_align/whl/torch2.9.cu12/ \
+pip install torch-forced-align \
+  --extra-index-url https://cifkao.github.io/torch_forced_align/whl/torch2.9.cu12/
 ```
 
 ## Usage
@@ -45,4 +45,4 @@ Wheels are built using `./build_all.sh`, via a Docker container for each wheel.
 
 ## License
 
-[BSD 2-Clause](LICENSE).
+[BSD 2-Clause](LICENSE)
